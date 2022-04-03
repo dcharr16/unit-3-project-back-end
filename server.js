@@ -21,7 +21,7 @@ app.use('/api/auth', authRouter)
 //api that im using
 app.use('/api/recipes', recipesRouter)
 
-app.use(function (req, res, next) {
+app.use(function (err, req, res, next) {
   res.status(404).json({ err: "Not found" })
 })
 
