@@ -9,7 +9,8 @@ function index (req, res) {
     res.json(err)
   })
 }
-function create (req, res){
+function create (req, res){  
+  req.body.owner =req.user.profile
   Recipe.create (req.body)
   .then(recipe => res.json(recipe))
   .catch (err => res.json(err))

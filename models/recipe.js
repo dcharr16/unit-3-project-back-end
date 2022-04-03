@@ -4,8 +4,8 @@ const Schema= mongoose.Schema
 
 const recipeSchema = new Schema({
   name:{type: String, required: true},
-  ingredients: {type: String},
-  classification: {type: String, default: "vegetable"},
+  ingredients: {type: String, required:true},
+  classification: {type: String, default: "entre"},
   rating: {type: Number, default: 5},
   owner:{type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
   photo: {type: String},
