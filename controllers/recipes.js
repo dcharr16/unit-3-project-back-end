@@ -2,6 +2,7 @@ import {Recipe} from '../models/recipe.js'
 
 function index (req, res) {
   Recipe.find({})
+  .populate('owner')
   .then (recipes =>{
     res.json(recipes)
   }) 
@@ -9,10 +10,13 @@ function index (req, res) {
     res.json(err)
   })
 }
-function create (req, res){  
-  req.body.owner =req.user.profile
+function create (req, res) {  
+  req.body.owner = req.user.profile
   Recipe.create (req.body)
-  .then(recipe => res.json(recipe))
+  .then(recipe => {recipe.populate('owner')
+    .then(populatedRecipe => {res.json(populatedRecipe)
+  })
+  })
   .catch (err => res.json(err))
 }
 function update (req, res){

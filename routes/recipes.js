@@ -7,11 +7,11 @@ const router = Router()
 /*---------- Public Routes ----------*/
 router.get('/', recipesCtrl.index)
 
-// show
-router.get('/:id', recipesCtrl.show)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+// show
+router.get('/:id', checkAuth, recipesCtrl.show)
 // create
 router.post('/', checkAuth, recipesCtrl.create)
 
